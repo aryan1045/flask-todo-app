@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Todo App</h2>
+
+<form action="{{ url_for('add') }}" method="post">
+    <input type="text" name="task" class="form-control" required>
+    <button class="btn btn-primary mt-2">Add Task</button>
+</form>
+
+<ul class="list-group mt-3">
+    {% for todo in todos %}
+    <li class="list-group-item d-flex justify-content-between">
+        {{ todo["task"] }}
+        <div>
+            <a href="{{ url_for('update', id=todo['id']) }}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{{ url_for('delete', id=todo['id']) }}" class="btn btn-danger btn-sm">Delete</a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
